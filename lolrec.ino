@@ -156,14 +156,17 @@ void loop()
                 }
              if(WiFi.status()== WL_CONNECTED)  //kdyz se nepripojil, tak kasli na web
              {
-             if (client.connect("suninu.org/katerina/thesis/doghouse", 80)) 
+              // if (client.connect("chlupac.eparo.cz, 80))
+             if (client.connect("suninu.org", 80)) 
              {
                 Serial.println("connected to server");
                 // Make a HTTP request:
-                sprintf(textven,"GET /vlozeni.php?pes=%d&venkuT=%d&venkuV=%d&boudatT=%d&boudaV=%d&boudaCO=%d&EVOC=%d HTTP/1.1", pes,venkuT, venkuV, boudatT,boudaV, boudaCO,EVOC);
-              //  client.println(textven);
-               // client.println("Host: chlupac.eparo.cz");
-               // client.println("Connection: close");
+               // sprintf(textven,"GET /vlozeni.php?pes=%d&venkuT=%d&venkuV=%d&boudatT=%d&boudaV=%d&boudaCO=%d&EVOC=%d HTTP/1.1", pes,venkuT, venkuV, boudatT,boudaV, boudaCO,EVOC);
+                sprintf(textven,"GET /katerina/thesis/doghouse? HTTP/1.1");
+                client.println(textven);
+                Serial.println(textven);
+                client.println("Host: suninu.org");
+                client.println("Connection: close");
                 client.println();
                   while (client.available())
                   {
